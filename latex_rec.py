@@ -6,7 +6,7 @@ from os import path
 print("Hello World")
 print("pls work")
 
-AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "test.wav")
+AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "alphabet.wav")
 
 r = sr.Recognizer()
 with sr.AudioFile(AUDIO_FILE) as source:
