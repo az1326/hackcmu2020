@@ -117,5 +117,35 @@ def matrix_parse(str):
 
     return result
 
+def matrix(word_array, start_index, end_index):
+    result = "\\begin{pmatrix}\n"
+    newRow = True
+
+    i = start_index
+    while i < end_index:
+        if (word_array[i].lower() == "element"):
+            if (newRow):
+                result += "    "
+                newRow = False
+            else:
+                result += " & "
+
+            j = i + 1
+            while (j < end_index and word_array[j].lower() != "element" and word_array[j].lower() != "row" and word_array[j].lower() != "roll"):
+                j += 1
+            result += process(word_array, i+1, j)
+            i = j
+        elif (word_array[i].lower() == "row" or word_array[i].lower() == "roll"):
+            result += "\\\\\n"
+            newRow = True
+            i += 1
+        else:
+            result += word_array[i]
+            i+=1
+    
+    result += "\n\\end{pmatrix}"
+
+    return result
+        
 
 print(poly_str("x minus 1 plus fraction 2 x to the fourth plus root x root minus x denominator x plus 3 fraction"))
