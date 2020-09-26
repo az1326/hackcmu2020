@@ -40,10 +40,12 @@ dictionary = {
     "fourth": ["4"],
     "fifth": ["5"],
     "root": ["\\sqrt{"],
+    "route": ["\\sqrt{"],
     "there": ["exists", "\\exists "],
     "left": [["bracket", "{"], ["parenthesis", "("]],
     "right": [["bracket", "}"], ["parenthesis", ")"]],
     "close": ["}"],
+    "closed": ["}"],
     "begin": ["\\begin{"],
     "end": ["\\end{"]
 }
