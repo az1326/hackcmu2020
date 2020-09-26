@@ -17,7 +17,7 @@ dict = {
     "pie": ["\pi"],
     "theta": ["\\theta"],
     "approximately": ["\\approx"],
-    "point": ["."]
+    "point": ["."],
     
     "zero": ["0"],
     "one": ["1"],
