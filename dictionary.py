@@ -50,4 +50,4 @@ dictionary = {
 
 
 def search(argument):
-    return dictionary.get(argument, argument)
+    return dictionary.get(argument, [argument])
