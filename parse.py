@@ -34,7 +34,8 @@ dict = {
     "third": "3",
     "fourth": "4",
     "fifth": "5",
-    "root": "{\\sqrt"
+    "root": "{\\sqrt",
+    "there": ["exists", "\\exists "]
 }
 
 
@@ -44,7 +45,18 @@ def process(word_array, start_index, end_index):
     i = start_index
     while i < end_index:
         raw_str = dict.get(word_array[i], word_array[i])
-        if raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
+        if isinstance(raw_str, list):
+            flag = True
+            for j in range(0, len(raw_str) - 1):
+                if i + j + 1 >= end_index or word_array[i + j + 1] != raw_str[j]:
+                    flag = False
+                    break
+            if flag:
+                result += raw_str[len(raw_str) - 1]
+                i += len(raw_str) - 1
+            else:
+                result += word_array[i]
+        elif raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
             result += "^"
             i += 1
         elif raw_str == "fraction":
@@ -58,7 +70,7 @@ def process(word_array, start_index, end_index):
             while j < len(word_array) and word_array[j] != "matrix":
                 j += 1
             result += matrix(word_array, i+1, j)
-            i=j
+            i = j
         elif raw_str[0] == '{':
             j = i + 1
             while j < len(word_array) and dict.get(word_array[j]) != raw_str:
@@ -67,6 +79,8 @@ def process(word_array, start_index, end_index):
             i = j
         else:
             result += raw_str
+            if len(raw_str) > 2:
+                result += ' '
         i += 1
     return result
 
@@ -150,4 +164,4 @@ def matrix(word_array, start_index, end_index):
     return result
         
 
-print(poly_str("x minus 1 plus fraction 2 x to the fourth plus root x root minus x denominator x plus 3 fraction"))
+print(poly_str("there exists vector v 2 x plus four power second"))
