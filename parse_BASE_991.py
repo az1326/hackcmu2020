@@ -1,7 +1,6 @@
 # implementation plan:
 # - make a dictionary of common commands/implementation functions for them
 # - multiple word functions, functions that involve brackets will require a separate function
-# things that require start/ends: fraction, square root
 
 poly_dict = {
     "square": "^2",
@@ -10,42 +9,27 @@ poly_dict = {
     "cubed": "^3",
     "plus": "+",
     "minus": "-",
+    "the": "^",
     "second": "2",
     "third": "3",
     "fourth": "4",
     "fifth": "5"
 }
 
-matrix_dict = {
-    "zero" : "0",
-    "one" : "1",
-    "two" : "2",
-    "to" : "2",
-    "too" : "2",
-    "three" : "3",
-    "four" : "4",
-    "for" : "4",
-    "five" : "5",
-    "six" : "6",
-    "seven" : "7",
-    "eight" : "8",
-    "nine" : "9",
-}
-
 def polynomial(word_array):
     result = ""
     for i in range(0, len(word_array)):
         raw_str = poly_dict.get(word_array[i], word_array[i])
-        if raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
-            result += "^"
+        if raw_str == "to":
+            i += 1
+        elif raw_str == "the":
+            result += raw_str
         else:
             result += raw_str
     return result
 
-
 def poly_str(str):
     return polynomial(str.split())
-
 
 dictionary = {
     "times": "\\times"
@@ -71,16 +55,16 @@ def matrix_parse(str):
     newRow = True
 
     for i in range(0 ,len(word_array)):
-        if (word_array[i].lower() == "element" and not newRow):
+        if (word_array[i] == "element" and not newRow):
             result += " & "
-        elif (word_array[i].lower() == "element"):
+        elif (word_array[i] == "element"):
             newRow = False
             result += "    "
-        elif (word_array[i].lower() == "row" or word_array[i].lower() == "roll"):
+        elif (word_array[i] == "row" or word_array[i] == "roll"):
             newRow = True
             result += "\\\\\n"
         else:
-            result += matrix_dict.get(word_array[i].lower(), word_array[i].lower())
+            result += word_array[i]
     
     result += "\n\\end{pmatrix}"
 
