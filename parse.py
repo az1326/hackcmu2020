@@ -16,6 +16,22 @@ poly_dict = {
     "fifth": "5"
 }
 
+matrix_dict = {
+    "zero" : "0",
+    "one" : "1",
+    "two" : "2",
+    "to" : "2",
+    "too" : "2",
+    "three" : "3",
+    "four" : "4",
+    "for" : "4",
+    "five" : "5",
+    "six" : "6",
+    "seven" : "7",
+    "eight" : "8",
+    "nine" : "9",
+}
+
 def polynomial(word_array):
     result = ""
     for i in range(0, len(word_array)):
@@ -55,16 +71,16 @@ def matrix_parse(str):
     newRow = True
 
     for i in range(0 ,len(word_array)):
-        if (word_array[i] == "element" and not newRow):
+        if (word_array[i].lower() == "element" and not newRow):
             result += " & "
-        elif (word_array[i] == "element"):
+        elif (word_array[i].lower() == "element"):
             newRow = False
             result += "    "
-        elif (word_array[i] == "row" or word_array[i] == "roll"):
+        elif (word_array[i].lower() == "row" or word_array[i].lower() == "roll"):
             newRow = True
             result += "\\\\\n"
         else:
-            result += word_array[i]
+            result += matrix_dict.get(word_array[i].lower(), word_array[i].lower())
     
     result += "\n\\end{pmatrix}"
 
