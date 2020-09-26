@@ -61,7 +61,7 @@ def process(word_array, start_index, end_index):
     result = ""
     i = start_index
     while i < end_index:
-        raw_arr = dict.get(word_array[i], word_array[i])
+        raw_arr = dict.get(word_array[i], [word_array[i]])
         word_flag = False
         for raw_str in raw_arr:
             if isinstance(raw_str, list):
