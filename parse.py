@@ -4,6 +4,22 @@
 # test with more functions -- not sure what else is required?
 # start thinking about text and math mode
 
+elif raw_str == "times" and i!=0 and i + 1 < len(word_array + 1):
+            result += f'{word_array[i-1]} + "\\times" + {word_array[i+1]}'
+            i += 1
+        elif raw_str == "divided by" and i!=0 and i + 1 < len(word_array + 1):
+            result += f'{word_array[i-1]} + "\div" + {word_array[i+1]}'
+            i += 1
+        elif raw_str == "pie":
+            result += "\pi"
+            i += 1
+        elif raw_str == "theta":
+            result += "\\theta"
+            i += 1
+        elif raw_str == "pie":
+            result += "\pi"
+            i += 1
+
 import re
 
 dict = {
