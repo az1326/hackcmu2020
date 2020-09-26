@@ -13,31 +13,31 @@ def process(word_array, start_index, end_index):
     i = start_index
     while i < end_index:
         #raw_arr = dictionary.get(word_array[i], [word_array[i]])
-        raw_arr = search(word_array[i])
+        raw_arr = search(word_array[i].lower())
         word_flag = False
         for raw_str in raw_arr:
             if isinstance(raw_str, list):
                 flag = True
                 for j in range(0, len(raw_str) - 1):
-                    if i + j + 1 >= end_index or word_array[i + j + 1] != raw_str[j]:
+                    if i + j + 1 >= end_index or word_array[i + j + 1].lower() != raw_str[j].lower():
                         flag = False
                         break
                 if flag:
-                    result += raw_str[len(raw_str) - 1]
+                    result += raw_str[len(raw_str) - 1].lower()
                     i += len(raw_str) - 1
                     word_flag = True
                     break
-            elif raw_str == "fraction":
+            elif raw_str.lower() == "fraction":
                 j = i + 1
-                while j < len(word_array) and word_array[j] != "fraction":
+                while j < len(word_array) and word_array[j].lower() != "fraction":
                     j += 1
                 result += fraction(word_array, i, j)
                 i = j
                 word_flag = True
                 break
-            elif raw_str == "matrix":
+            elif raw_str.lower() == "matrix":
                 j = i + 1
-                while j < len(word_array) and word_array[j] != "matrix":
+                while j < len(word_array) and word_array[j].lower() != "matrix":
                     j += 1
                 result += matrix(word_array, i+1, j)
                 i = j
@@ -60,7 +60,7 @@ def process(word_array, start_index, end_index):
 def fraction(word_array, start_index, end_index):
     result = "\\frac{"
     i = start_index
-    while i < end_index and word_array[i] != "denominator":
+    while i < end_index and word_array[i].lower() != "denominator":
         i += 1
     result += process(word_array, start_index + 1, i) + "}"
     result += "{" + process(word_array, i + 1, end_index) + "}"
@@ -90,7 +90,7 @@ def matrix(word_array, start_index, end_index):
             newRow = True
             i += 1
         else:
-            result += word_array[i]
+            result += word_array[i].lower()
             i+=1
     
     result += "\n\\end{pmatrix}"
