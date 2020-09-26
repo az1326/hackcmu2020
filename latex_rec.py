@@ -2,7 +2,7 @@
 
 import speech_recognition as sr
 from os import path
-from parse import matrix_parse
+from parse import matrix_parse, process
 
 AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "matrix_test.wav")
 
@@ -22,3 +22,8 @@ except sr.UnknownValueError:
 except sr.RequestError as e:
     print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
+m_test = """one plus two squared minus root four root times fraction one two denominator three fraction
+            matrix element 1 plus 2 element 2 root 4 root element fraction 12 denominator 3 fraction row
+            element 2 element 4 element 7 matrix"""
+marr = m_test.split()
+print(process(marr, 0, len(marr)))
