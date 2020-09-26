@@ -4,57 +4,7 @@
 # test with more functions -- not sure what else is required?
 # start thinking about text and math mode
 
-import re
-
-dict = {
-
-    "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
-    "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
-    "not": [["equal", "to", "\\neq"]],
-    "times": ["\\times"],
-    "divided": [["by", "\div"]],
-    "infinity": ["\\infty"],
-    "pie": ["\\pi"],
-    "theta": ["\\theta"],
-    "approximately": ["\\approx"],
-    "point": ["."],
-    "zero": ["0"],
-    "one": ["1"],
-    "two": ["2"],
-    "to": ["2"],
-    "too": ["2"],
-    "three": ["3"],
-    "four": ["4"],
-    "for": ["4"],
-    "mod": ["\%"],
-    "five": ["5"],
-    "six": ["6"],
-    "seven": ["7"],
-    "eight": ["8"],
-    "nine": ["9"],
-    "sub": ["_"],
-    "super": ["^"],
-    "power": ["^"],
-    "powers": ["^"],
-    "be": ["b"],
-    "square": [["root", "\\sqrt{ "], ["^2"]],
-    "squared": ["^2"],
-    "cube": ["^3"],
-    "cubed": ["^3"],
-    "plus": [["or", "minus", "\\pm "], ["+"]],
-    "minus": ["-"],
-    "second": ["2"],
-    "third": ["3"],
-    "fourth": ["4"],
-    "fifth": ["5"],
-    "root": ["\\sqrt{"],
-    "there": ["exists", "\\exists "],
-    "left": [["bracket", "{"], ["parenthesis", "("]],
-    "right": [["bracket", "}"], ["parenthesis", ")"]],
-    "close": ["}"],
-    "begin": ["\\begin{"],
-    "end": ["\\end{"]
-}
+from dictionary import search
 
 
 # lower bound is inclusive, upper bound is exclusive
@@ -62,7 +12,8 @@ def process(word_array, start_index, end_index):
     result = ""
     i = start_index
     while i < end_index:
-        raw_arr = dict.get(word_array[i], [word_array[i]])
+        #raw_arr = dictionary.get(word_array[i], [word_array[i]])
+        raw_arr = search(word_array[i])
         word_flag = False
         for raw_str in raw_arr:
             if isinstance(raw_str, list):
@@ -105,11 +56,6 @@ def process(word_array, start_index, end_index):
     return result
 
 
-def poly_str(str):
-    word_array = str.split()
-    return process(str.split(), 0, len(word_array))
-
-
 # word_array[start_index] == "fraction"; end_index = "fraction"
 def fraction(word_array, start_index, end_index):
     result = "\\frac{"
@@ -120,32 +66,6 @@ def fraction(word_array, start_index, end_index):
     result += "{" + process(word_array, i + 1, end_index) + "}"
     return result
 
-
-def parse(str):
-    return poly_str(str)
-
-
-def matrix_parse(str):
-    result = "\n\\begin{pmatrix}\n"
-    word_array = re.findall(r"[\w']+", str)
-
-    newRow = True
-
-    for i in range(0 ,len(word_array)):
-        if (word_array[i].lower() == "element" and not newRow):
-            result += " & "
-        elif (word_array[i].lower() == "element"):
-            newRow = False
-            result += "    "
-        elif (word_array[i].lower() == "row" or word_array[i].lower() == "roll"):
-            newRow = True
-            result += "\\\\\n"
-        else:
-            result += matrix_dict.get(word_array[i].lower(), word_array[i].lower())
-    
-    result += "\n\\end{pmatrix}"
-
-    return result
 
 def matrix(word_array, start_index, end_index):
     result = "\n\\begin{pmatrix}\n"
@@ -176,6 +96,11 @@ def matrix(word_array, start_index, end_index):
     result += "\n\\end{pmatrix}"
 
     return result
-        
 
-print(poly_str("4 times square root 2 square"))
+
+def parse(arg_str):
+    word_array = arg_str.split()
+    return process(word_array, 0, len(word_array))
+
+
+print(parse("4 times square root 2 square close"))
