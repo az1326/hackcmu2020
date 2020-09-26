@@ -2,7 +2,8 @@
 
 import speech_recognition as sr
 from os import path
-from parse import matrix_parse, process
+from parse import matrix_parse, process, matrix
+import re
 
 AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "matrix_test.wav")
 
@@ -16,7 +17,8 @@ try:
     # instead of `r.recognize_google(audio)`
     recognized = r.recognize_google(audio)
     print("Google Speech Recognition thinks you said " + recognized)
-    print("This becomes\n" + matrix_parse(recognized))
+    rec_arr = re.findall(r"[\w']+", recognized)
+    print("This becomes\n" + matrix(rec_arr, 0 ,len(rec_arr)))
 except sr.UnknownValueError:
     print("Google Speech Recognition could not understand audio")
 except sr.RequestError as e:
