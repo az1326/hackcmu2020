@@ -6,6 +6,24 @@
 import re
 
 dict = {
+    "zero": "0",
+    "one": "1",
+    "two": "2",
+    "to": "2",
+    "too": "2",
+    "three": "3",
+    "four": "4",
+    "for": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+    "sub": "_",
+    "super": "^",
+    "power": "^",
+    "powers": "^",
+    "be": "b",
     "square": "^2",
     "squared": "^2",
     "cube": "^3",
@@ -17,28 +35,6 @@ dict = {
     "fourth": "4",
     "fifth": "5",
     "root": "{\\sqrt"
-}
-
-matrix_dict = {
-    "zero" : "0",
-    "one" : "1",
-    "two" : "2",
-    "to" : "2",
-    "too" : "2",
-    "three" : "3",
-    "four" : "4",
-    "for" : "4",
-    "five" : "5",
-    "six" : "6",
-    "seven" : "7",
-    "eight" : "8",
-    "nine" : "9",
-    "sub" : "_",
-    "super" : "^",
-    "power" : "^",
-    "powers" : "^",
-    "be" : "b",
-    
 }
 
 
