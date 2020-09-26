@@ -17,4 +17,25 @@ def parse(str):
     return result
 
 
-print(parse("V times W"))
+def matrix_parse(str):
+    result = "\\begin{pmatrix}\n"
+    word_array = str.split()
+
+    newRow = True
+
+    for i in range(0 ,len(word_array)):
+        if (word_array[i] == "element" and not newRow):
+            result += " & "
+        elif (word_array[i] == "element"):
+            newRow = False
+            result += "    "
+        elif (word_array[i] == "row" or word_array[i] == "roll"):
+            newRow = True
+            result += "\\\\\n"
+        else:
+            result += word_array[i]
+    
+    result += "\n\\end{pmatrix}"
+
+    return result
+        
