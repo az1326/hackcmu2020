@@ -32,36 +32,59 @@ matrix_dict = {
     "nine" : "9",
 }
 
-def polynomial(word_array):
+
+# lower bound is inclusive, upper bound is exclusive
+def process(word_array, start_index, end_index):
     result = ""
-    for i in range(0, len(word_array)):
+    i = start_index
+    while i < end_index:
         raw_str = poly_dict.get(word_array[i], word_array[i])
         if raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
             result += "^"
+            i += 1
+        elif raw_str == "fraction":
+            j = i + 1
+            while j < len(word_array) and word_array[j] != "fraction":
+                j += 1
+            result += fraction(word_array, i, j)
+            i = j
+        elif raw_str == "root":
+            j = i + 1
+            while j < len(word_array) and word_array[j] != "root":
+                j += 1
+            result += square_root(word_array, i, j)
+            i = j
         else:
             result += raw_str
+        i += 1
     return result
 
 
 def poly_str(str):
-    return polynomial(str.split())
+    word_array = str.split()
+    return process(str.split(), 0, len(word_array))
 
 
-dictionary = {
-    "times": "\\times"
+# word_array[start_index] == "fraction"; end_index = "fraction"
+def fraction(word_array, start_index, end_index):
+    result = "\\frac{"
+    i = start_index
+    while i < end_index and word_array[i] != "denominator":
+        i += 1
+    result += process(word_array, start_index + 1, i) + "}"
+    result += "{" + process(word_array, i + 1, end_index) + "}"
+    return result
 
-}
+
+# word_array[start_index] = "root"; end_index = "root"
+def square_root(word_array, start_index, end_index):
+    result = "\\sqrt{"
+    result += process(word_array, start_index + 1, end_index) + "}"
+    return result
 
 
 def parse(str):
-    result = ""
-    word_array = str.split()
-
-    # some phrases are multiple words long, so we can't naively process word by word
-    for i in range(0, len(word_array)):
-        result += dictionary.get(word_array[i], word_array[i]) + " "
-
-    return result
+    return poly_str(str)
 
 
 def matrix_parse(str):
@@ -85,5 +108,6 @@ def matrix_parse(str):
     result += "\n\\end{pmatrix}"
 
     return result
-        
-print(poly_str("2 x to the fourth plus x squared minus x"))
+
+
+print(poly_str("x minus 1 plus fraction 2 x to the fourth plus root x root minus x denominator x plus 3 fraction"))
