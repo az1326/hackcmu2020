@@ -51,6 +51,7 @@ dict = {
     "there": ["exists", "\\exists "],
     "left": [["bracket", "{"], ["parenthesis", "("]],
     "right": [["bracket", "}"], ["parenthesis", ")"]],
+    "close": ["}"],
     "begin": ["\\begin{"],
     "end": ["\\end{"]
 }
