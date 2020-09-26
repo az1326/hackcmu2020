@@ -5,17 +5,17 @@ from os import path
 from parse import process
 import re
 
-AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "matrix_test.wav")
-
-r = sr.Recognizer()
-with sr.AudioFile(AUDIO_FILE) as source:
-    audio = r.record(source)
+# AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "matrix_test.wav")
 
 # r = sr.Recognizer()
-# with sr.Microphone() as source:
-#     print("Say something!")
-#     audio = r.listen(source)
-# print("Working...")
+# with sr.AudioFile(AUDIO_FILE) as source:
+#     audio = r.record(source)
+
+r = sr.Recognizer()
+with sr.Microphone() as source:
+    print("Say something!")
+    audio = r.listen(source)
+print("Working...")
 
 try:
     # for testing purposes, we're just using the default API key
@@ -24,7 +24,7 @@ try:
     recognized = r.recognize_google(audio)
     print("Google Speech Recognition thinks you said " + recognized)
     rec_arr = recognized.split()
-    print("This becomes\n" + process(rec_arr, 0 ,len(rec_arr)))
+    print("In LaTex:\n" + process(rec_arr, 0 ,len(rec_arr)))
 except sr.UnknownValueError:
     print("Google Speech Recognition could not understand audio")
 except sr.RequestError as e:
