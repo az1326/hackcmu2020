@@ -37,7 +37,7 @@ dict = {
     "power": ["^"],
     "powers": ["^"],
     "be": ["b"],
-    "square": [["root", "\\sqrt "], ["^2"]],
+    "square": [["root", "\\sqrt{ "], ["^2"]],
     "squared": ["^2"],
     "cube": ["^3"],
     "cubed": ["^3"],
@@ -47,12 +47,12 @@ dict = {
     "third": ["3"],
     "fourth": ["4"],
     "fifth": ["5"],
-    "root": ["{\\sqrt"],
+    "root": ["\\sqrt{"],
     "there": ["exists", "\\exists "],
     "left": [["bracket", "{"], ["parenthesis", "("]],
     "right": [["bracket", "}"], ["parenthesis", ")"]],
-    "begin": ["\\begin"],
-    "end": ["\\end"]
+    "begin": ["\\begin{"],
+    "end": ["\\end{"]
 }
 
 
@@ -91,14 +91,6 @@ def process(word_array, start_index, end_index):
                 i = j
                 word_flag = True
                 break
-            elif raw_str[0] == '{':
-                j = i + 1
-                while j < len(word_array) and word_array[j] != word_array[i]:
-                    j += 1
-                result += single_brace_function(raw_str[1:], word_array, i, j)
-                i = j
-                word_flag = True
-                break
             else:
                 result += raw_str
                 if len(raw_str) > 2:
@@ -125,13 +117,6 @@ def fraction(word_array, start_index, end_index):
         i += 1
     result += process(word_array, start_index + 1, i) + "}"
     result += "{" + process(word_array, i + 1, end_index) + "}"
-    return result
-
-
-# this might be obsolete now
-def single_brace_function(term, word_array, start_index, end_index):
-    result = term + "{"
-    result += process(word_array, start_index + 1, end_index) + "}"
     return result
 
 
@@ -192,4 +177,4 @@ def matrix(word_array, start_index, end_index):
     return result
         
 
-print(poly_str("2 divided by 3"))
+print(poly_str("4 times square root 2 square"))
