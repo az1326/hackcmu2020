@@ -1,23 +1,24 @@
-# TO DO LIST
-# nesting multiple of the same functions -- frac inside frac, for example
-# do we want to get rid of fraction/single-bracket-things and just let the user specify where to put brackets?
-# test with more functions -- not sure what else is required?
-# start thinking about text and math mode
+# implementation plan:
+# - make a dictionary of common commands/implementation functions for them
+# - multiple word functions, functions that involve brackets will require a separate function
+# things that require start/ends: fraction, square root
 
 import re
 
 dict = {
     
-    "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
-    "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
-    "not": [["equal", "to", "\\neq"]],
+    "less than or equal to": ["\leq"],
+    "geater than or equal to": ["\geq"],
+    "not equal to": ["\\neq"],
     "times": ["\\times"],
-    "divided": ["by", "\div"],
-    "infinity": ["\\infty"],
-    "pie": ["\\pi"],
+    "divided by": ["\div"],
+    "plus or minus": ["\pm"],
+    "infinity": ["\infty"],
+    "pie": ["\pi"],
     "theta": ["\\theta"],
     "approximately": ["\\approx"],
     "point": ["."],
+    
     "zero": ["0"],
     "one": ["1"],
     "two": ["2"],
@@ -36,22 +37,20 @@ dict = {
     "power": ["^"],
     "powers": ["^"],
     "be": ["b"],
-    "square": [["root", "\\sqrt "], ["^2"]],
+    "square": ["^2"],
     "squared": ["^2"],
     "cube": ["^3"],
     "cubed": ["^3"],
-    "plus": [["or", "minus", "\\pm "], ["+"]],
+    "plus": ["+"],
     "minus": ["-"],
     "second": ["2"],
     "third": ["3"],
     "fourth": ["4"],
     "fifth": ["5"],
-    "root": ["\\sqrt"],
+    "root": ["{\\sqrt"],
     "there": ["exists", "\\exists "],
     "left": [["bracket", "{"], ["parenthesis", "("]],
-    "right": [["bracket", "}"], ["parenthesis", ")"]],
-    "begin": ["\\begin"],
-    "end": ["\\end"]
+    "right": [["bracket", "}"], ["parenthesis", ")"]]
 }
 
 
@@ -71,6 +70,7 @@ def process(word_array, start_index, end_index):
                         break
                 if flag:
                     result += raw_str[len(raw_str) - 1]
+                    print(result)
                     i += len(raw_str) - 1
                     word_flag = True
                     break
@@ -127,7 +127,6 @@ def fraction(word_array, start_index, end_index):
     return result
 
 
-#this might be obsolete now
 def single_brace_function(term, word_array, start_index, end_index):
     result = term + "{"
     result += process(word_array, start_index + 1, end_index) + "}"
@@ -191,4 +190,4 @@ def matrix(word_array, start_index, end_index):
     return result
         
 
-print(poly_str("2 square plus square root 3 minus root 4"))
+print(poly_str("left parenthesis left bracket second right parenthesis"))

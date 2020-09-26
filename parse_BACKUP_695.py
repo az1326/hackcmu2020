@@ -8,8 +8,8 @@ import re
 
 dict = {
     
-    "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
-    "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
+    "less than or equal to": ["\leq"],
+    "greater than or equal to": ["\geq"],
     "not": [["equal", "to", "\\neq"]],
     "times": ["\\times"],
     "divided": ["by", "\div"],
@@ -18,6 +18,10 @@ dict = {
     "theta": ["\\theta"],
     "approximately": ["\\approx"],
     "point": ["."],
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 889af38e6c531c0a6d2e8ae973e31188c61858be
     "zero": ["0"],
     "one": ["1"],
     "two": ["2"],

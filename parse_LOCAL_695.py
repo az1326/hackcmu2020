@@ -8,8 +8,8 @@ import re
 
 dict = {
     
-    "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
-    "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
+    "less than or equal to": ["\leq"],
+    "greater than or equal to": ["\geq"],
     "not": [["equal", "to", "\\neq"]],
     "times": ["\\times"],
     "divided": ["by", "\div"],
