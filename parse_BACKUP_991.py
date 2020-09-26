@@ -3,7 +3,10 @@
 # - multiple word functions, functions that involve brackets will require a separate function
 # things that require start/ends: fraction, square root
 
-import re
+def fraction(word_array):
+    result = ""
+    return result
+
 
 poly_dict = {
     "square": "^2",
@@ -18,6 +21,11 @@ poly_dict = {
     "fifth": "5"
 }
 
+<<<<<<< HEAD
+
+# just call it simply
+def process(word_array):
+=======
 matrix_dict = {
     "zero" : "0",
     "one" : "1",
@@ -32,15 +40,10 @@ matrix_dict = {
     "seven" : "7",
     "eight" : "8",
     "nine" : "9",
-    "sub" : "_",
-    "super" : "^",
-    "power" : "^",
-    "powers" : "^",
-    "be" : "b",
-    
 }
 
 def polynomial(word_array):
+>>>>>>> c1626e56d6a9b6ffb36b40e106550ac23d78474e
     result = ""
     for i in range(0, len(word_array)):
         raw_str = poly_dict.get(word_array[i], word_array[i])
@@ -52,7 +55,7 @@ def polynomial(word_array):
 
 
 def poly_str(str):
-    return polynomial(str.split())
+    return process(str.split())
 
 
 dictionary = {
@@ -74,7 +77,7 @@ def parse(str):
 
 def matrix_parse(str):
     result = "\\begin{pmatrix}\n"
-    word_array = re.findall(r"[\w']+", str)
+    word_array = str.split()
 
     newRow = True
 
