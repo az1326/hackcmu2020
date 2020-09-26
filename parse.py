@@ -47,7 +47,7 @@ dict = {
     "third": ["3"],
     "fourth": ["4"],
     "fifth": ["5"],
-    "root": ["\\sqrt"],
+    "root": ["{\\sqrt"],
     "there": ["exists", "\\exists "],
     "left": [["bracket", "{"], ["parenthesis", "("]],
     "right": [["bracket", "}"], ["parenthesis", ")"]],
@@ -93,7 +93,7 @@ def process(word_array, start_index, end_index):
                 break
             elif raw_str[0] == '{':
                 j = i + 1
-                while j < len(word_array) and dict.get(word_array[j]) != raw_str:
+                while j < len(word_array) and word_array[j] != word_array[i]:
                     j += 1
                 result += single_brace_function(raw_str[1:], word_array, i, j)
                 i = j
