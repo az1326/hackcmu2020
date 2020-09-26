@@ -20,10 +20,3 @@ def mathSymbolsGeneral(math_array):
     
     if string == "":       
     return result
-
-def poly_str(str):
-    return polynomial(str.split())
-
-
-print(parse("V times W")) 
-print(poly_str("2 x to the fourth plus x squared minus x"))
