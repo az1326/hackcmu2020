@@ -85,13 +85,6 @@ def fraction(word_array, start_index, end_index):
     return result
 
 
-# word_array[start_index] = "root"; end_index = "root"
-def square_root(word_array, start_index, end_index):
-    result = "\\sqrt{"
-    result += process(word_array, start_index + 1, end_index) + "}"
-    return result
-
-
 def single_brace_function(term, word_array, start_index, end_index):
     result = term + "{"
     result += process(word_array, start_index + 1, end_index) + "}"
