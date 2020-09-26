@@ -16,7 +16,9 @@ symbols_dict = {
 }
 
 def mathSymbolsGeneral(math_array):
-    result = ""
     
-    if string == "":       
-    return result
+    for n in range (0, len(math_array)):
+        baseString = symbols_dict(math_array[n])
+        print(baseString)
+
+print(mathSymbolsGeneral)
