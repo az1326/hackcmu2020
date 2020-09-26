@@ -16,14 +16,9 @@ symbols_dict = {
 }
 
 def mathSymbolsGeneral(math_array):
-    result = ""
     
-    if string == "":       
-    return result
+    for n in range (0, len(math_array)):
+        baseString = symbols_dict(math_array[n])
+        print(baseString)
 
-def poly_str(str):
-    return polynomial(str.split())
-
-
-print(parse("V times W")) 
-print(poly_str("2 x to the fourth plus x squared minus x"))
+print(mathSymbolsGeneral)
