@@ -57,6 +57,12 @@ def process(word_array, start_index, end_index):
                 j += 1
             result += fraction(word_array, i, j)
             i = j
+        elif raw_str == "matrix":
+            j = i + 1
+            while j < len(word_array) and word_array[j] != "matrix":
+                j += 1
+            result += matrix(word_array, i+1, j)
+            i=j
         elif raw_str[0] == '{':
             j = i + 1
             while j < len(word_array) and dict.get(word_array[j]) != raw_str:
@@ -96,7 +102,7 @@ def parse(str):
 
 
 def matrix_parse(str):
-    result = "\\begin{pmatrix}\n"
+    result = "\n\\begin{pmatrix}\n"
     word_array = re.findall(r"[\w']+", str)
 
     newRow = True
@@ -118,7 +124,7 @@ def matrix_parse(str):
     return result
 
 def matrix(word_array, start_index, end_index):
-    result = "\\begin{pmatrix}\n"
+    result = "\n\\begin{pmatrix}\n"
     newRow = True
 
     i = start_index
