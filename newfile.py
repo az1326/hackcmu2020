@@ -2,7 +2,7 @@ import math
 
 symbols_dict = {
     "less than or equal to": "\leq",
-    "geater than or equal to": "\geq",
+    "greater than or equal to": "\geq",
     "not equal to": "\\neq",
     "times": "\\times",
     "integer divided by": "\div",

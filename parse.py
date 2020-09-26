@@ -1,6 +1,12 @@
 # implementation plan:
 # - make a dictionary of common commands/implementation functions for them
 # - multiple word functions, functions that involve brackets will require a separate function
+# things that require start/ends: fraction, square root
+
+def fraction(word_array):
+    result = ""
+    return result
+
 
 poly_dict = {
     "square": "^2",
@@ -9,27 +15,28 @@ poly_dict = {
     "cubed": "^3",
     "plus": "+",
     "minus": "-",
-    "the": "^",
     "second": "2",
     "third": "3",
     "fourth": "4",
     "fifth": "5"
 }
 
-def polynomial(word_array):
+
+# just call it simply
+def process(word_array):
     result = ""
     for i in range(0, len(word_array)):
         raw_str = poly_dict.get(word_array[i], word_array[i])
-        if raw_str == "to":
-            i += 1
-        elif raw_str == "the":
-            result += raw_str
+        if raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
+            result += "^"
         else:
             result += raw_str
     return result
 
+
 def poly_str(str):
-    return polynomial(str.split())
+    return process(str.split())
+
 
 dictionary = {
     "times": "\\times"

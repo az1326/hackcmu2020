@@ -7,7 +7,7 @@ from parse import matrix_parse
 print("Hello World")
 print("pls work")
 
-AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "matrix_test.wav")
+AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "recording.wav")
 
 r = sr.Recognizer()
 with sr.AudioFile(AUDIO_FILE) as source:
