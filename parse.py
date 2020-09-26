@@ -5,7 +5,7 @@
 
 import re
 
-poly_dict = {
+dict = {
     "square": "^2",
     "squared": "^2",
     "cube": "^3",
@@ -15,7 +15,8 @@ poly_dict = {
     "second": "2",
     "third": "3",
     "fourth": "4",
-    "fifth": "5"
+    "fifth": "5",
+    "root": "{\\sqrt"
 }
 
 matrix_dict = {
@@ -46,7 +47,7 @@ def process(word_array, start_index, end_index):
     result = ""
     i = start_index
     while i < end_index:
-        raw_str = poly_dict.get(word_array[i], word_array[i])
+        raw_str = dict.get(word_array[i], word_array[i])
         if raw_str == "to" and i + 1 < len(word_array) and word_array[i + 1] == "the":
             result += "^"
             i += 1
@@ -56,11 +57,11 @@ def process(word_array, start_index, end_index):
                 j += 1
             result += fraction(word_array, i, j)
             i = j
-        elif raw_str == "root":
+        elif raw_str[0] == '{':
             j = i + 1
-            while j < len(word_array) and word_array[j] != "root":
+            while j < len(word_array) and dict.get(word_array[j]) != raw_str:
                 j += 1
-            result += square_root(word_array, i, j)
+            result += single_brace_function(raw_str[1:], word_array, i, j)
             i = j
         else:
             result += raw_str
@@ -87,6 +88,12 @@ def fraction(word_array, start_index, end_index):
 # word_array[start_index] = "root"; end_index = "root"
 def square_root(word_array, start_index, end_index):
     result = "\\sqrt{"
+    result += process(word_array, start_index + 1, end_index) + "}"
+    return result
+
+
+def single_brace_function(term, word_array, start_index, end_index):
+    result = term + "{"
     result += process(word_array, start_index + 1, end_index) + "}"
     return result
 
