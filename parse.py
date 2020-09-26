@@ -7,12 +7,12 @@
 import re
 
 dict = {
-    
+
     "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
     "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
     "not": [["equal", "to", "\\neq"]],
     "times": ["\\times"],
-    "divided": ["by", "\div"],
+    "divided": [["by", "\div"]],
     "infinity": ["\\infty"],
     "pie": ["\\pi"],
     "theta": ["\\theta"],
@@ -127,7 +127,7 @@ def fraction(word_array, start_index, end_index):
     return result
 
 
-#this might be obsolete now
+# this might be obsolete now
 def single_brace_function(term, word_array, start_index, end_index):
     result = term + "{"
     result += process(word_array, start_index + 1, end_index) + "}"
@@ -191,4 +191,4 @@ def matrix(word_array, start_index, end_index):
     return result
         
 
-print(poly_str("2 square plus square root 3 minus root 4"))
+print(poly_str("2 divided by 3"))
