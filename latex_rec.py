@@ -11,6 +11,11 @@ r = sr.Recognizer()
 with sr.AudioFile(AUDIO_FILE) as source:
     audio = r.record(source)
 
+# r = sr.Recognizer()
+# with sr.Microphone() as source:
+#     print("Say something!")
+#     audio = r.listen(source)
+
 try:
     # for testing purposes, we're just using the default API key
     # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
