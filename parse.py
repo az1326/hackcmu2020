@@ -27,9 +27,9 @@ def process(word_array, start_index, end_index):
                     i += len(raw_str) - 1
                     word_flag = True
                     break
-            elif raw_str.lower() == "fraction":
+            elif raw_str.lower() == "fraction" or raw_str.lower() == "fractions":
                 j = i + 1
-                while j < len(word_array) and word_array[j].lower() != "fraction":
+                while j < len(word_array) and word_array[j].lower() != "fraction" and word_array[j].lower() != "fractions":
                     j += 1
                 result += fraction(word_array, i, j)
                 i = j
@@ -101,6 +101,3 @@ def matrix(word_array, start_index, end_index):
 def parse(arg_str):
     word_array = arg_str.split()
     return process(word_array, 0, len(word_array))
-
-
-print(parse("4 times square root 2 square close"))

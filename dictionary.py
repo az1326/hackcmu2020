@@ -3,10 +3,13 @@ dictionary = {
     "less": [["than", "or", "equal", "to", "\leq"], ["than", "<"]],
     "greater": [["than", "or", "equal", "to", "\geq"], ["than", ">"]],
     "not": [["equal", "to", "\\neq"]],
+    "equals": ["="],
+    "equal": ["="],
     "times": ["\\times"],
     "divided": [["by", "\div"]],
     "infinity": ["\\infty"],
     "pie": ["\\pi"],
+    "pi" : ["\\pi"],
     "theta": ["\\theta"],
     "approximately": ["\\approx"],
     "point": ["."],
@@ -47,7 +50,8 @@ dictionary = {
     "close": ["}"],
     "closed": ["}"],
     "begin": ["\\begin{"],
-    "end": ["\\end{"]
+    "end": ["\\end{"],
+    "break": ["\n"],
 }
 
 
